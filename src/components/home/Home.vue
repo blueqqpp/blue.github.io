@@ -16,8 +16,9 @@
         </div>
       </div>
       <div class="top">
-        <div class="isgo">
-           <span v-html="message"></span>
+        <div class="isgo" @click="tab">
+           <span v-if="isOut" v-html="messageOut"></span>
+           <span v-else v-html="messageIn"></span>
         </div>
         <div class="info">
           <div class="user-info">
@@ -68,9 +69,16 @@ export default {
     return {
       username: '',
       isShow: true,
-      message: "研究生用户，入校授权有效"
+      isOut: true,
+      messageIn: "研究生用户，入校授权有效",
+      messageOut: '研究生用户，出校登记成功'
     }
   },
+  methods: {
+    tab(){
+      this.isOut = !this.isOut
+    }
+  }
 }
 </script>
 
@@ -91,7 +99,10 @@ export default {
   background-color: #fff;
   justify-content: space-between;
 }
-
+.left img {
+  width: 40px;
+  height: 40px;
+}
 .center span {
   padding-bottom: 4px;
   font-size: 17px;
